@@ -1,2 +1,2 @@
 # TODO-list
-Kántor Hunor-Ákos, Nagy Hunor-Zalán és Teutsch Mihály-Richárd softwere fejlesztés projektje.
+Kántor Hunor-Ákos, Nagy Hunor-Zalán és Teutsch Mihály-Richárd software fejlesztés projektje.
