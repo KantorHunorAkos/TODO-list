@@ -1,9 +1,23 @@
 # TODO-list
-Kántor Hunor-Ákos, Nagy Hunor-Zalán és Teutsch Mihály-Richárd software fejlesztés projektje.
+Software rendszerek tervezése projekt leírás
 
-Feladatok kiosztása:
-  Hunor -> web oldal
-  Ákos -> Android program
-  Misi -> adatbázis kezelés
-  
-A projekt részeként egy feladatlistát készítünk.
+1.	Bevezetés a projektbe
+  Projektünk célja egy feladatlista létrehozása, mely segítségével egy XXI. századi ember könnyedén eligazodik a feladatai közt. A feladatokat amint megkapja, bevezeti felületre, akár az applikáció, akár a weboldal segítségével. Amikor az adott feladatot el kell végeznie, a program figyelmeztet és értesítést küld. 
+	A felületen több felhasználó is regisztrálhat, de nem látják egymás feladatait és nem is szerkeszthetik azokat, tehát csak saját profiljukat kezelhetik. 
+	Elsősorban egy Firebase adatbázist hoztunk létre, ahol tárolódik minden felhasználó adata és feladata. Ez az adatbázis elérhető Android applikációról, valamint weboldalról is egyaránt. 
+2.	Feladatok kiosztása
+  A feladatokat 3 személy végzi:
+    •	Kántor Hunor-Ákos 		--> Android
+    •	Nagy Hunor-Zalán 		--> Web
+    •	Teutsch Mihály-Richárd 	--> adatbázis
+  3.	Leírás
+    Firebase database:
+
+    Androdid application:
+
+    Webpage:
+  4.	Design
+  •	színek:
+  •	betűtípus:
+  •	gombok
+  •	
