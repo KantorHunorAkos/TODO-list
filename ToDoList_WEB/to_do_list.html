@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <title> To Do </title>
+        <link rel="icon" href="to-do-list.png" type="image/png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="to_do_list.css" type="text/css">
+
+        <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
+        <script src="to_do_list.js"> </script>
+    </head>
+    <body>
+        <div id="content_container">
+            <div id="to_do_list_header">
+                <p> To Do List </p>
+            </div>
+            
+            <div id="input_container">
+                <input id="input_box" type="text" placeholder="Start A Task">
+                <input id="input_date" type="date">
+                <button id="input_button" onclic="add_task();"> 
+                    Enter Task <i class="fa fa-arrow-circle-right"> </i> 
+                </button>
+            </div>
+
+            <!--Task To Do-->
+            <p class="header">Task</p>
+            <div id="container">
+                <div id=task_container>
+                    <div id="task_data">
+                        <p id="task_title" contenteditable="false">Task Title 1</p>
+                        <p id="task_date" contenteditable="false">Task Date 1</p>
+                    </div>
+                    <div id="task_tool">
+                        <button id="task_done_button" onclick="task_done();">
+                            <i class="fa fa-check"></i>
+                        </button>
+                        <button id="task_edit_button" onclick="task_edit();">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <button id="task_delete_button" onclick="task_delete();">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id=task_container>
+                    <div id="task_data">
+                        <p id="task_title" contenteditable="false">Task Title 1</p>
+                        <p id="task_date" contenteditable="false">Task Date 1</p>
+                    </div>
+                    <div id="task_tool">
+                        <button id="task_done_button" onclick="task_done();">
+                            <i class="fa fa-check"></i>
+                        </button>
+                        <button id="task_edit_button" onclick="task_edit();">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <button id="task_delete_button" onclick="task_delete();">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id=task_container>
+                    <div id="task_data">
+                        <p id="task_title" contenteditable="false">Task Title 1</p>
+                        <p id="task_date" contenteditable="false">Task Date 1</p>
+                    </div>
+                    <div id="task_tool">
+                        <button id="task_done_button" onclick="task_done();">
+                            <i class="fa fa-check"></i>
+                        </button>
+                        <button id="task_edit_button" onclick="task_edit();">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <button id="task_delete_button" onclick="task_delete();">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!--Finished To Do-->
+            <p class="header">Finished</p>
+            <div id="container">
+                <div id=task_container>
+                    <div id="task_data">
+                        <p id="task_title" contenteditable="false">Task Title 1</p>
+                        <p id="task_date" contenteditable="false">Task Date 1</p>
+                    </div>
+                </div>
+                <div id=task_container>
+                    <div id="task_data">
+                        <p id="task_title" contenteditable="false">Task Title 1</p>
+                        <p id="task_date" contenteditable="false">Task Date 1</p>
+                    </div>
+                </div>
+                <div id=task_container>
+                    <div id="task_data">
+                        <p id="task_title" contenteditable="false">Task Title 1</p>
+                        <p id="task_date" contenteditable="false">Task Date 1</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
