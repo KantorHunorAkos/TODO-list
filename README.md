@@ -15,15 +15,28 @@ Software rendszerek tervezése projekt leírás
     
     •	Nagy Hunor-Zalán 		--> Web
     
-    •	Teutsch Mihály-Richárd 	--> adatbázis
+    •	Teutsch Mihály-Richárd 		--> adatbázis
     
   3.	Leírás
   
     Firebase database:
+    
+    	- Táblák: 
 
     Androdid application:
+    
+    	- Aktivity-k:
+	
+	- Form-ok: 
+	
 
     Webpage:
+    
+    	- SIGN UP page
+	
+	- SIGN IN page
+	
+	- TO DO LIST page
     
   4.	Design
   
