@@ -41,9 +41,8 @@ Software rendszerek tervezése projekt leírás
   4.	Design
   
   •	színek:
+    - háttér:#86db35
   
   •	betűtípus:
   
   •	gombok:
-  
-  •	
