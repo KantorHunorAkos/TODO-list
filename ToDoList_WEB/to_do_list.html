@@ -11,68 +11,67 @@
     </head>
     <body>
         <div id="content_container">
-            <div id="to_do_list_header">
-                <p> To Do List </p>
-            </div>
+
+            <!--Title-->
+            <div id="to_do_list_header"> <p> To Do List </p> </div>
             
+            <!--Add To Do-->
             <div id="input_container">
-                <input id="input_box" type="text" placeholder="Start A Task">
+                <input id="input_box" type="text" placeholder="Add A Goal">
                 <input id="input_date" type="date">
-                <button id="input_button" onclic="add_task();"> 
-                    Enter Task <i class="fa fa-arrow-circle-right"> </i> 
-                </button>
+                <button id="input_button" onclick="add_task();"> Enter <i class="fa fa-arrow-circle-right"> </i> </button>
             </div>
 
-            <!--Task To Do-->
-            <p class="header">Task</p>
-            <div id="container">
-                <div id=task_container>
-                    <div id="task_data">
-                        <p id="task_title" contenteditable="false">Task Title 1</p>
-                        <p id="task_date" contenteditable="false">Task Date 1</p>
+            <!--To Do List-->
+            <p class="header">To Do</p>
+            <div class="container">
+                <div class=data_container>
+                    <div id="data">
+                        <p id="title" contenteditable="false">To Do 1</p>
+                        <p id="date" contenteditable="false">To Do 1</p>
                     </div>
-                    <div id="task_tool">
-                        <button id="task_done_button" onclick="task_done();">
+                    <div id="tool">
+                        <button id="done_button" onclick="task_done();">
                             <i class="fa fa-check"></i>
                         </button>
-                        <button id="task_edit_button" onclick="task_edit();">
+                        <button id="edit_button" onclick="task_edit();">
                             <i class="fa fa-pencil"></i>
                         </button>
-                        <button id="task_delete_button" onclick="task_delete();">
+                        <button id="delete_button" onclick="task_delete();">
                             <i class="fa fa-trash"></i>
                         </button>
                     </div>
                 </div>
-                <div id=task_container>
-                    <div id="task_data">
-                        <p id="task_title" contenteditable="false">Task Title 1</p>
-                        <p id="task_date" contenteditable="false">Task Date 1</p>
+                <div class=data_container>
+                    <div id="data">
+                        <p id="title" contenteditable="false">Title 1</p>
+                        <p id="date" contenteditable="false">Date 1</p>
                     </div>
-                    <div id="task_tool">
-                        <button id="task_done_button" onclick="task_done();">
+                    <div id="tool">
+                        <button id="done_button" onclick="task_done();">
                             <i class="fa fa-check"></i>
                         </button>
-                        <button id="task_edit_button" onclick="task_edit();">
+                        <button id="edit_button" onclick="task_edit();">
                             <i class="fa fa-pencil"></i>
                         </button>
-                        <button id="task_delete_button" onclick="task_delete();">
+                        <button id="delete_button" onclick="task_delete();">
                             <i class="fa fa-trash"></i>
                         </button>
                     </div>
                 </div>
-                <div id=task_container>
-                    <div id="task_data">
-                        <p id="task_title" contenteditable="false">Task Title 1</p>
-                        <p id="task_date" contenteditable="false">Task Date 1</p>
+                <div class=data_container>
+                    <div id="data">
+                        <p id="title" contenteditable="false">Title 1</p>
+                        <p id="date" contenteditable="false">Date 1</p>
                     </div>
-                    <div id="task_tool">
-                        <button id="task_done_button" onclick="task_done();">
+                    <div id="tool">
+                        <button id="done_button" onclick="task_done();">
                             <i class="fa fa-check"></i>
                         </button>
-                        <button id="task_edit_button" onclick="task_edit();">
+                        <button id="edit_button" onclick="task_edit();">
                             <i class="fa fa-pencil"></i>
                         </button>
-                        <button id="task_delete_button" onclick="task_delete();">
+                        <button id="delete_button" onclick="task_delete();">
                             <i class="fa fa-trash"></i>
                         </button>
                     </div>
@@ -81,23 +80,23 @@
 
             <!--Finished To Do-->
             <p class="header">Finished</p>
-            <div id="container">
-                <div id=task_container>
-                    <div id="task_data">
-                        <p id="task_title" contenteditable="false">Task Title 1</p>
-                        <p id="task_date" contenteditable="false">Task Date 1</p>
+            <div class="container">
+                <div class=data_container>
+                    <div id="data">
+                        <p id="title" contenteditable="false">Title 1</p>
+                        <p id="date" contenteditable="false">Date 1</p>
                     </div>
                 </div>
-                <div id=task_container>
-                    <div id="task_data">
-                        <p id="task_title" contenteditable="false">Task Title 1</p>
-                        <p id="task_date" contenteditable="false">Task Date 1</p>
+                <div class=data_container>
+                    <div id="data">
+                        <p id="title" contenteditable="false">Title 1</p>
+                        <p id="date" contenteditable="false">Date 1</p>
                     </div>
                 </div>
-                <div id=task_container>
-                    <div id="task_data">
-                        <p id="task_title" contenteditable="false">Task Title 1</p>
-                        <p id="task_date" contenteditable="false">Task Date 1</p>
+                <div class=data_container>
+                    <div id="data">
+                        <p id="title" contenteditable="false">Title 1</p>
+                        <p id="date" contenteditable="false">Date 1</p>
                     </div>
                 </div>
             </div>
