@@ -9,7 +9,7 @@
         <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
         <script src="to_do_list.js"> </script>
     </head>
-    <body>
+    <body onload="create_unfinished_ToDo(), create_finished_ToDo()">
         <div id="content_container">
 
             <!--Title-->
@@ -19,7 +19,7 @@
             <div id="input_container">
                 <input id="input_box" type="text" placeholder="Add A Goal">
                 <input id="input_date" type="date">
-                <button id="input_button" onclick="add_task();"> Enter <i class="fa fa-arrow-circle-right"> </i> </button>
+                <button id="input_button" onclick="add_todo();"> Enter <i class="fa fa-arrow-circle-right"> </i> </button>
             </div>
 
             <!--To Do List-->
@@ -31,13 +31,13 @@
                         <p id="date" contenteditable="false">To Do 1</p>
                     </div>
                     <div id="tool">
-                        <button id="done_button" onclick="task_done();">
+                        <button id="done_button" onclick="todo_done();">
                             <i class="fa fa-check"></i>
                         </button>
-                        <button id="edit_button" onclick="task_edit();">
+                        <button id="edit_button" onclick="todo_edit();">
                             <i class="fa fa-pencil"></i>
                         </button>
-                        <button id="delete_button" onclick="task_delete();">
+                        <button id="delete_button" onclick="todo_delete();">
                             <i class="fa fa-trash"></i>
                         </button>
                     </div>
@@ -48,13 +48,13 @@
                         <p id="date" contenteditable="false">Date 1</p>
                     </div>
                     <div id="tool">
-                        <button id="done_button" onclick="task_done();">
+                        <button id="done_button" onclick="todo_done();">
                             <i class="fa fa-check"></i>
                         </button>
-                        <button id="edit_button" onclick="task_edit();">
+                        <button id="edit_button" onclick="todo_edit();">
                             <i class="fa fa-pencil"></i>
                         </button>
-                        <button id="delete_button" onclick="task_delete();">
+                        <button id="delete_button" onclick="todo_delete();">
                             <i class="fa fa-trash"></i>
                         </button>
                     </div>
@@ -65,13 +65,13 @@
                         <p id="date" contenteditable="false">Date 1</p>
                     </div>
                     <div id="tool">
-                        <button id="done_button" onclick="task_done();">
+                        <button id="done_button" onclick="todo_done();">
                             <i class="fa fa-check"></i>
                         </button>
-                        <button id="edit_button" onclick="task_edit();">
+                        <button id="edit_button" onclick="todo_edit();">
                             <i class="fa fa-pencil"></i>
                         </button>
-                        <button id="delete_button" onclick="task_delete();">
+                        <button id="delete_button" onclick="todo_delete();">
                             <i class="fa fa-trash"></i>
                         </button>
                     </div>

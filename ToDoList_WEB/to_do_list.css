@@ -203,6 +203,19 @@ body{
     margin-right: 5px;
 }
 
+#edit_button_editing{
+    float: right;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    background-color: #ffed83;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    margin-right: 5px;
+}
+
 #edit_button:hover{
     background-color: #4d4646;
     color: white;
