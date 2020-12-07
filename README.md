@@ -32,7 +32,10 @@ Software rendszerek tervezése projekt leírás
 
     ♦ Webpage:
     
-	A weboldal elkészítéséhez nincs szükségünk semmi féle nagy méretű applikációhoz, akár egy sima Notepad-ban is elkészíthető, és bármilyen browser segítségével futtatható az. Jómagam, Visual Studio Code-ot használtam, amihez telepítettem néhany extension-t, amik segítik/segítették munkám. Három, illetve három féle file típust használtam a weboldal megvalósításához (html, csss, js). A weboldal értsítést küld, ha van aktuális napi tevékenység. Az oldal újra tölti magát 5 percenként, így ha még mindig van aktuális tevékenység újra értesít. 
+	A weboldal elkészítéséhez nincs szükségünk semmi féle nagy méretű applikációhoz, akár egy sima Notepad-ban is elkészíthető, és bármilyen browser segítségével futtatható az. 
+	Jómagam, Visual Studio Code-ot használtam, amihez telepítettem néhany extension-t, amik segítik/segítették munkám. Három, illetve három féle file típust használtam a weboldal megvalósításához (html, csss, js). 
+	A weboldal értsítést küld, ha van aktuális napi tevékenység. 
+	Az oldal újra tölti magát 5 percenként, így ha még mindig van aktuális tevékenység újra értesít. 
    
     -  TO DO LIST page: https://pojecttodolist.netlify.app/
     
@@ -43,14 +46,23 @@ Software rendszerek tervezése projekt leírás
     Az adatbázishoz való kapcsolodási JavaScript kód: 
     
 var firebaseConfig = {
+
     apiKey: "AIzaSyAsn_dWrZNB1bRVul_XkgRWFgjEIusPKl8",
+    
     authDomain: "form-8954e.firebaseapp.com",
+    
     databaseURL: "https://form-8954e.firebaseio.com",
+    
     projectId: "form-8954e",
+    
     storageBucket: "form-8954e.appspot.com",
+    
     messagingSenderId: "347245119398",
+    
     appId: "1:347245119398:web:21766531a808a3d8ad7167",
+    
     measurementId: "G-C2LWPVJQFG"
+    
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -65,15 +77,22 @@ firebase.initializeApp(firebaseConfig);
     
     •	create_finished_ToDo:
     
-    •	todo_done: Valamelyik eseménynél a plusszra kattintva hívodik meg. Az adott eseményt kitőrli a To Do List-ről és áthelyezi a Finished listába. Mindezt a képernyőn és az adatbázisban is eggyaránt. 
+    •	todo_done: Valamelyik eseménynél a plusszra kattintva hívodik meg. 
+    Az adott eseményt kitőrli a To Do List-ről és áthelyezi a Finished listába. 
+    Mindezt a képernyőn és az adatbázisban is eggyaránt. 
     
-    •	todo_minus: Valamelyik eseménynél a minusszra kattintva hívodik meg. Az adott eseményt kitőrli a Finished listából és áthelyezi a To Do List-be. Mindezt a képernyőn és az adatbázisban is eggyaránt.
+    •	todo_minus: Valamelyik eseménynél a minusszra kattintva hívodik meg. 
+    Az adott eseményt kitőrli a Finished listából és áthelyezi a To Do List-be. 
+    Mindezt a képernyőn és az adatbázisban is eggyaránt.
     
-    •	todo_edit: Valamelyik eseménynél a ceruzára kattintva hívodik meg. Ha szerkeszteni akarunk egy eseményt, akkor hívódik meg. Engedélyezi a szerkesztést. 
+    •	todo_edit: Valamelyik eseménynél a ceruzára kattintva hívodik meg. 
+    Ha szerkeszteni akarunk egy eseményt, akkor hívódik meg. 
+    Engedélyezi a szerkesztést. 
     
     •	finish_edit: Ha befejezősőtt a szerkesztés, akkor lezérja azt és frissíti az adatbázist is.
     
-    •	todo_delete: Valamelyik eseménynél a szemetes kukára kattintva hívodik meg. Töröl az adatbázisból és a képernyőről is eggyaránt. 
+    •	todo_delete: Valamelyik eseménynél a szemetes kukára kattintva hívodik meg. 
+    Töröl az adatbázisból és a képernyőről is eggyaránt. 
     
     •	updateClock: Frissíti az aktuális órát folyamatosan. 
     
@@ -107,7 +126,10 @@ firebase.initializeApp(firebaseConfig);
     
     • felülírás: calendar, scrollbar
     
-    Miután a weboldal teljesen kész közzé teszem az interneten, de ingyenes domaint csak úgy szerezhetek, ha egy platformot használok, ami ingyenes domaint, illetve tárhelyet biztosít. Hátulütője annyi, hogy az url címet nem teljesen szekeszthetem, hozzá teszi a maga "reklámját". Használt platform: https://www.netlify.com/
+    Miután a weboldal teljesen kész közzé teszem az interneten, de ingyenes domaint csak úgy szerezhetek, 
+    ha egy platformot használok, ami ingyenes domaint, illetve tárhelyet biztosít.
+    Hátulütője annyi, hogy az url címet nem teljesen szekeszthetem, hozzá teszi a maga "reklámját". 
+    Használt platform: https://www.netlify.com/
     
   4.	Design
   
@@ -133,7 +155,8 @@ firebase.initializeApp(firebaseConfig);
   
   - edit: Szerkesztés lehetőségét adja meg. Dátum, illetve név.
   
-  - minus: Elemet helyez át az Expired List-ből a Finished List-be. Ide akkor kerül elem a To Do List-ből, ha az aktuális dátumhoz képest az kurrens elem dátuma már a múltnak tekinthető. 
+  - minus: Elemet helyez át az Expired List-ből a Finished List-be. 
+  Ide akkor kerül elem a To Do List-ből, ha az aktuális dátumhoz képest az kurrens elem dátuma már a múltnak tekinthető. 
   
   •	képek: to-do-list.png  --> A kép az applikáció, illetve a weboldal icon-ja.
   
