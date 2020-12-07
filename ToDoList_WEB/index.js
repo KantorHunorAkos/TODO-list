@@ -11,8 +11,34 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
+// My alert
+function CustomAlert(){
+    this.render = function(dialog){
+        var dialogoverlay = document.getElementById('dialogoverlay');
+        var dialogbox = document.getElementById('dialogbox');
+        dialogoverlay.style.display = "block";
+        dialogbox.style.display = "block";
+        document.getElementById('dialogboxhead').innerHTML = "Today's program: <span id=\"pipe\" class=\"fa fa-check\"></span>";
+        document.getElementById('dialogboxbody').innerHTML = dialog;
+        document.getElementById('dialogboxfoot').innerHTML = '<button id="close" onclick="Alert.ok()">OK</button>';
+    }
+	this.ok = function(){
+		document.getElementById('dialogbox').style.display = "none";
+		document.getElementById('dialogoverlay').style.display = "none";
+	}
+}
+var Alert = new CustomAlert();
+
+// Date
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0');
+var yyyy = today.getFullYear();
+today = yyyy + '-' + mm + '-' + dd;
+//console.log(today);
+
 function add_todo(){
-    //console.log("add_todo");
+    console.log("add_todo");
     input_box = document.getElementById("input_box");
     input_date = document.getElementById("input_date");
 
@@ -29,20 +55,161 @@ function add_todo(){
         updates["/unfinished_ToDo/" + key] = todo;
         firebase.database().ref().update(updates); 
         create_unfinished_ToDo();
+        var a = document.getElementById("input_box");
+        a.value = a.defaultValue;
+        var b = document.getElementById("input_date");
+        b.value = b.defaultValue;
+    }
+    else{
+        alert("Incorrect data!");
     }
 }
 
 function create_unfinished_ToDo(){
     unfinished_ToDo_container = document.getElementsByClassName("container")[0];
+    finished_ToDo_container = document.getElementsByClassName("container")[1];
     unfinished_ToDo_container.innerHTML = "";
 
-    todo_array = [];
+    todo_arrayf = [];
     firebase.database().ref("unfinished_ToDo").once('value', function(snapshot){
         snapshot.forEach(function(childSnapshot){
-            var childKey = childSnapshot.key;
+            //var childKey = childSnapshot.key;
+            var childData = childSnapshot.val();
+            //console.log(childKey+": "+childData);
+            todo_arrayf.push(Object.values(childData));
+        });
+        //console.log(todo_arrayf.length);
+        assigment = "";
+        for (var i, i = 0; i < todo_arrayf.length; ++i){
+            //console.log(todo_array[i]);
+            todo_date = todo_arrayf[i][0];
+            todo_key = todo_arrayf[i][1];
+            todo_title = todo_arrayf[i][2];
+
+            todo_container = document.createElement('div');
+            todo_container.setAttribute("class", "data_container");
+            todo_container.setAttribute("data-key", todo_key);
+
+            if (todo_date == today){
+                //console.log(todo_title);
+                assigment += todo_title;
+                assigment += ", ";
+            }
+
+            if (todo_date >= today){
+                todo_container = document.createElement('div');
+                todo_container.setAttribute("class", "data_container");
+                todo_container.setAttribute("data-key", todo_key);
+    
+                // data
+                todo_data = document.createElement('div');
+                todo_data.setAttribute('id', 'data');
+    
+                title = document.createElement('p');
+                title.setAttribute('id', 'title');
+                title.setAttribute('contenteditable', false);
+                title.innerHTML = todo_title;
+    
+                date = document.createElement('p');
+                date.setAttribute('id', 'date');
+                date.setAttribute('contenteditable', false);
+                date.innerHTML = todo_date;
+    
+                // tools
+                todo_tool = document.createElement('div');
+                todo_tool.setAttribute('id', 'tool')
+    
+                todo_done_button = document.createElement('button');
+                todo_done_button.setAttribute('id', 'done_button');
+                todo_done_button.setAttribute('onclick', "todo_done(this.parentElement.parentElement, this.parentElement)");
+                fa_done = document.createElement('i');
+                fa_done.setAttribute('class', 'fa fa-plus');
+    
+                todo_edit_button = document.createElement('button');
+                todo_edit_button.setAttribute('id', 'edit_button');
+                todo_edit_button.setAttribute('onclick', "todo_edit(this.parentElement.parentElement, this)");
+                fa_edit = document.createElement('i');
+                fa_edit.setAttribute('class', 'fa fa-pencil');
+    
+                todo_delete_button = document.createElement('button');
+                todo_delete_button.setAttribute('id', 'delete_button');
+                todo_delete_button.setAttribute('onclick', "todo_delete(this.parentElement.parentElement, 0)");
+                fa_delete = document.createElement('i');
+                fa_delete.setAttribute('class', 'fa fa-trash');
+
+                // show 
+                unfinished_ToDo_container.append(todo_container);
+                todo_container.append(todo_data);
+                todo_data.append(title);
+                todo_data.append(date);
+    
+                todo_container.append(todo_tool);
+                todo_tool.append(todo_done_button);
+                todo_done_button.append(fa_done);
+                todo_tool.append(todo_edit_button);
+                todo_edit_button.append(fa_edit);
+                todo_tool.append(todo_delete_button);
+                todo_delete_button.append(fa_delete);
+            }
+            else{
+                todo_container = document.createElement('div');
+                todo_container.setAttribute("class", "data_container");
+                todo_container.setAttribute("data-key", todo_key);
+
+                // data
+                todo_data = document.createElement('div');
+                todo_data.setAttribute('id', 'data');
+
+                title = document.createElement('p');
+                title.setAttribute('id', 'title');
+                title.setAttribute('contenteditable', false);
+                title.innerHTML = todo_title;
+
+                date = document.createElement('p');
+                date.setAttribute('id', 'date');
+                date.setAttribute('contenteditable', false);
+                date.innerHTML = todo_date;
+
+                todo_tool = document.createElement('div');
+                todo_tool.setAttribute('id', 'tool')
+
+                todo_delete_button = document.createElement('button');
+                todo_delete_button.setAttribute('id', 'delete_button');
+                todo_delete_button.setAttribute('onclick', "todo_delete(this.parentElement.parentElement, 1)");
+                fa_delete = document.createElement('i');
+                fa_delete.setAttribute('class', 'fa fa-trash');
+
+                // show
+                finished_ToDo_container.append(todo_container);
+                todo_container.append(todo_data);
+                todo_data.append(title);
+                todo_data.append(date);
+                
+                todo_container.append(todo_tool);
+                todo_tool.append(todo_delete_button);
+                todo_delete_button.append(fa_delete);
+            }
+        }
+        //alert("Today's program: " + assigment);
+        if (assigment != ""){
+            assigment = assigment.substring(0, assigment.length - 2);
+            Alert.render(assigment)
+        }
+    });
+}
+
+function create_finished_ToDo(){
+    finished_ToDo_container = document.getElementsByClassName("container")[1];
+    finished_ToDo_container.innerHTML = "";
+
+    todo_array = [];
+    firebase.database().ref("finished_ToDo").once('value', function(snapshot){
+        snapshot.forEach(function(childSnapshot){
+            //var childKey = childSnapshot.key;
             var childData = childSnapshot.val();
             todo_array.push(Object.values(childData));
         });
+        //console.log(todo_array.length);
         for (var i, i = 0; i < todo_array.length; ++i){
             //console.log(todo_array[i]);
             todo_date = todo_array[i][0];
@@ -71,74 +238,11 @@ function create_unfinished_ToDo(){
             todo_tool = document.createElement('div');
             todo_tool.setAttribute('id', 'tool')
 
-            todo_done_button = document.createElement('button');
-            todo_done_button.setAttribute('id', 'done_button');
-            todo_done_button.setAttribute('onclick', "todo_done(this.parentElement.parentElement, this.parentElement)");
-            fa_done = document.createElement('i');
-            fa_done.setAttribute('class', 'fa fa-check');
-
-            todo_edit_button = document.createElement('button');
-            todo_edit_button.setAttribute('id', 'edit_button');
-            todo_edit_button.setAttribute('onclick', "todo_edit(this.parentElement.parentElement, this)");
-            fa_edit = document.createElement('i');
-            fa_edit.setAttribute('class', 'fa fa-pencil');
-
-            todo_delete_button = document.createElement('button');
-            todo_delete_button.setAttribute('id', 'delete_button');
-            todo_delete_button.setAttribute('onclick', "todo_delete(this.parentElement.parentElement, 0)");
-            fa_delete = document.createElement('i');
-            fa_delete.setAttribute('class', 'fa fa-trash');
-
-            unfinished_ToDo_container.append(todo_container);
-            todo_container.append(todo_data);
-            todo_data.append(title);
-            todo_data.append(date);
-
-            todo_container.append(todo_tool);
-            todo_tool.append(todo_done_button);
-            todo_done_button.append(fa_done);
-            todo_tool.append(todo_edit_button);
-            todo_edit_button.append(fa_edit);
-            todo_tool.append(todo_delete_button);
-            todo_delete_button.append(fa_delete);
-        }
-    });
-}
-
-function create_finished_ToDo(){
-    finished_ToDo_container = document.getElementsByClassName("container")[1];
-    finished_ToDo_container.innerHTML = "";
-
-    todo_array = [];
-    firebase.database().ref("finished_ToDo").once('value', function(snapshot){
-        snapshot.forEach(function(childSnapshot){
-            //var childKey = childSnapshot.key;
-            var childData = childSnapshot.val();
-            todo_array.push(Object.values(childData));
-        });
-        for (var i, i = 0; i < todo_array.length; ++i){
-            //console.log(todo_array[i]);
-            todo_date = todo_array[i][0];
-            todo_key = todo_array[i][1];
-            todo_title = todo_array[i][2];
-
-            todo_container = document.createElement('div');
-            todo_container.setAttribute("class", "data_container");
-            todo_container.setAttribute("data-key", todo_key);
-
-            // data
-            todo_data = document.createElement('div');
-            todo_data.setAttribute('id', 'data');
-
-            title = document.createElement('p');
-            title.setAttribute('id', 'title');
-            title.setAttribute('contenteditable', false);
-            title.innerHTML = todo_title;
-
-            date = document.createElement('p');
-            date.setAttribute('id', 'date');
-            date.setAttribute('contenteditable', false);
-            date.innerHTML = todo_date;
+            todo_minus_button = document.createElement('button');
+            todo_minus_button.setAttribute('id', 'minus_button');
+            todo_minus_button.setAttribute('onclick', "todo_minus(this.parentElement.parentElement, this.parentElement)");
+            fa_minus = document.createElement('i');
+            fa_minus.setAttribute('class', 'fa fa-minus');
 
             todo_delete_button = document.createElement('button');
             todo_delete_button.setAttribute('id', 'delete_button');
@@ -149,9 +253,13 @@ function create_finished_ToDo(){
             finished_ToDo_container.append(todo_container);
             todo_container.append(todo_data);
             todo_data.append(title);
-            todo_data.append(todo_delete_button);
-            todo_delete_button.append(fa_delete);
             todo_data.append(date);
+
+            todo_container.append(todo_tool);
+            todo_tool.append(todo_minus_button);
+            todo_minus_button.append(fa_minus);
+            todo_tool.append(todo_delete_button);
+            todo_delete_button.append(fa_delete);
         }
     });
 }
@@ -175,8 +283,31 @@ function todo_done(todo, todo_tool){
     firebase.database().ref().update(updates); 
 
     // delete our ToDo from unfinished
-    todo_delete(todo);
+    todo_delete(todo, 0);
     create_finished_ToDo();
+}
+
+function todo_minus(todo, todo_tool){
+    //console.log("todo_minus");
+    unfinish_todo_container = document.getElementsByClassName("container")[0];
+    todo.removeChild(todo_tool);
+
+    unfinish_todo_container.append(todo);
+
+    var key = todo.getAttribute("data-key");
+    var todo_obj = {
+        title: todo.childNodes[0].childNodes[0].innerHTML,
+        date: todo.childNodes[0].childNodes[1].innerHTML,
+        key: key
+    };
+
+    var updates = {};
+    updates["/unfinished_ToDo/" + key] = todo_obj;
+    firebase.database().ref().update(updates); 
+
+    // delete our ToDo from unfinished
+    todo_delete(todo);
+    create_unfinished_ToDo();
 }
 
 function todo_edit(todo, edit_button){
@@ -220,7 +351,7 @@ function finish_edit(todo, edit_button){
 
 function todo_delete(todo, where){
     //console.log("todo_delete");
-    key =  todo.getAttribute("data-key");
+    key = todo.getAttribute("data-key");
     if (where == 0){
         todo_to_remove = firebase.database().ref("unfinished_ToDo/" + key);
     }

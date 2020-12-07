@@ -56,7 +56,7 @@ body{
 
 #input_date{
     width: 40%;
-    float: left;
+    float: right;
     height: 50px;
     background-color: none;
     border: none;
@@ -278,4 +278,84 @@ body{
 
 ::-webkit-scrollbar-thumb:hover{
     background: #555;
+}
+
+#dialogoverlay{
+	display: none;
+	opacity: .8;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: #FFF;
+	width: 100%;
+	z-index: 10;
+}
+
+#dialogbox{
+	display: none;
+	position: fixed;
+	background: #000;
+	border-radius:7px; 
+	width:550px;
+	z-index: 10;
+}
+
+#dialogbox > div{ 
+    background:#FFF; 
+    margin:8px; 
+}
+
+#dialogbox > div > #dialogboxhead{ 
+    background: #666; 
+    font-size:19px; padding:10px; 
+    color:#CCC; 
+}
+
+#dialogbox > div > #dialogboxbody{ 
+    background:#333; 
+    padding:20px; 
+    color:#FFF; 
+}
+
+#dialogbox > div > #dialogboxfoot{ 
+    background: #666;
+    padding:10px; 
+    text-align:right;
+}
+
+#close{
+    color: white;
+    background-color: #3498db;
+    display: inline-block;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+#pipe{
+    color: #2ecc71;
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+#minus_button{
+    float: right;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    background-color: #fff;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    margin-right: 5px;
+}
+
+#minus_button:hover{
+    background-color: #75b79e;;
+    color: white;
+}
+
+#minus_button:active{
+    transform: translateY(4px);
 }

@@ -1,9 +1,20 @@
-<html>
+<!--<!DOCTYPE html>-->
+<html lang="hu">
     <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Software rendszerek tervezese projekt">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <title> To Do </title>
         <link rel="icon" href="to-do-list.png" type="image/png"> <!--ToDo icon-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--Used css file-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--Used css file, icons-->
         <link rel="stylesheet" href="index.css" type="text/css"> <!--My css file-->
+
+        <style type="text/css">
+        </style>
+
+        <script type="text/javascript">
+        </script>
 
         <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script> <!--Firebase-->
         <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script> <!--Firebase-->
@@ -11,12 +22,22 @@
     </head>
     <body onload="create_unfinished_ToDo(), create_finished_ToDo()">
         <div id="content_container">
-
+            
             <!--Title-->
             <div id="to_do_list_header"> <p> To Do List </p> </div>
-            
+
             <!--Add To Do-->
             <div id="input_container">
+                <!--My Alert-->
+                <div id="dialogoverlay"></div>
+                <div id="dialogbox">
+                    <div>
+                        <div id="dialogboxhead"></div>
+                        <div id="dialogboxbody"></div>
+                        <div id="dialogboxfoot"></div>
+                    </div>
+                </div>
+
                 <input id="input_box" type="text" placeholder="Add A Goal">
                 <input id="input_date" type="date">
                 <button id="input_button" onclick="add_todo();"> Enter <i class="fa fa-arrow-circle-right"> </i> </button>
@@ -32,7 +53,7 @@
                     </div>
                     <div id="tool">
                         <button id="done_button" onclick="todo_done();">
-                            <i class="fa fa-check"></i>
+                            <i class="fa fa-plus"></i>
                         </button>
                         <button id="edit_button" onclick="todo_edit();">
                             <i class="fa fa-pencil"></i>
@@ -56,10 +77,13 @@
                         <button id="delete_button" onclick="todo_delete();">
                             <i class="fa fa-trash"></i>
                         </button>
+                        <button id="minus_button" onclick="todo_minus();">
+                            <i class="fa fa-minus"></i>
+                        </button>
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </body>
 </html>
