@@ -43,6 +43,10 @@ Software rendszerek tervezése projekt leírás
     
     - Használt adatbátis: Firebase -->
     
+    Project name: form
+    
+    App name: ToDoList  -->  unfinished_ToDo, finished_ToDo  -->  date, key, title
+    
     Az adatbázishoz való kapcsolodási JavaScript kód: 
     
 var firebaseConfig = {
