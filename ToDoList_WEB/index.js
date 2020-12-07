@@ -18,8 +18,8 @@ function CustomAlert(){
         var dialogbox = document.getElementById('dialogbox');
         dialogoverlay.style.display = "block";
         dialogbox.style.display = "block";
-        document.getElementById('dialogboxhead').innerHTML = "Today's program: <span id=\"pipe\" class=\"fa fa-check\"></span>";
-        document.getElementById('dialogboxbody').innerHTML = dialog;
+        document.getElementById('dialogboxhead').innerHTML = "Today's program: <span id=\"pipe\" class=\"fa fa-check\"></span><\span>";
+        document.getElementById('dialogboxbody').innerHTML = "<span>" + dialog + "</span>";
         document.getElementById('dialogboxfoot').innerHTML = '<button id="close" onclick="Alert.ok()">OK</button>';
     }
 	this.ok = function(){
@@ -31,23 +31,27 @@ var Alert = new CustomAlert();
 
 // Date
 var today = new Date();
+//console.log(today);
 var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0');
 var yyyy = today.getFullYear();
-today = yyyy + '-' + mm + '-' + dd;
+var today0 = yyyy + '-' + mm + '-' + dd;
+var hour = today.getHours()
+var minute = today.getMinutes()
+today = yyyy + '-' + mm + '-' + dd + ' ' + hour + ':' + minute;
 //console.log(today);
 
 function add_todo(){
-    console.log("add_todo");
+    //console.log("add_todo");
     input_box = document.getElementById("input_box");
-    input_date = document.getElementById("input_date");
+    var input_date = document.getElementById("input_date");
 
     if (input_box.value.length != 0 && input_date.value.length != 0){ // not empty
         var key = firebase.database().ref().child("unfinished_ToDo").push().key;
         //console.log(key);
         var todo = {
             title: input_box.value,
-            date: input_date.value,
+            date: input_date.value.replace("T", " "),
             key: key
         };
 
@@ -67,8 +71,9 @@ function add_todo(){
 
 function create_unfinished_ToDo(){
     unfinished_ToDo_container = document.getElementsByClassName("container")[0];
-    finished_ToDo_container = document.getElementsByClassName("container")[1];
+    expired_ToDo_container = document.getElementsByClassName("container")[2];
     unfinished_ToDo_container.innerHTML = "";
+    expired_ToDo_container.innerHTML = "";
 
     todo_arrayf = [];
     firebase.database().ref("unfinished_ToDo").once('value', function(snapshot){
@@ -86,11 +91,9 @@ function create_unfinished_ToDo(){
             todo_key = todo_arrayf[i][1];
             todo_title = todo_arrayf[i][2];
 
-            todo_container = document.createElement('div');
-            todo_container.setAttribute("class", "data_container");
-            todo_container.setAttribute("data-key", todo_key);
+            mytodo_date = todo_date.substring(0, todo_date.length - 6);
 
-            if (todo_date == today){
+            if (mytodo_date == today0){
                 //console.log(todo_title);
                 assigment += todo_title;
                 assigment += ", ";
@@ -173,34 +176,45 @@ function create_unfinished_ToDo(){
                 todo_tool = document.createElement('div');
                 todo_tool.setAttribute('id', 'tool')
 
+                todo_done_button = document.createElement('button');
+                todo_done_button.setAttribute('id', 'done_button');
+                todo_done_button.setAttribute('onclick', "todo_done(this.parentElement.parentElement, this.parentElement)");
+                fa_done = document.createElement('i');
+                fa_done.setAttribute('class', 'fa fa-plus');
+
                 todo_delete_button = document.createElement('button');
                 todo_delete_button.setAttribute('id', 'delete_button');
-                todo_delete_button.setAttribute('onclick', "todo_delete(this.parentElement.parentElement, 1)");
+                todo_delete_button.setAttribute('onclick', "todo_delete(this.parentElement.parentElement, 0)");
                 fa_delete = document.createElement('i');
                 fa_delete.setAttribute('class', 'fa fa-trash');
 
                 // show
-                finished_ToDo_container.append(todo_container);
+                expired_ToDo_container.append(todo_container);
                 todo_container.append(todo_data);
                 todo_data.append(title);
                 todo_data.append(date);
                 
                 todo_container.append(todo_tool);
+                todo_tool.append(todo_done_button);
+                todo_done_button.append(fa_done);
                 todo_tool.append(todo_delete_button);
                 todo_delete_button.append(fa_delete);
             }
         }
-        //alert("Today's program: " + assigment);
         if (assigment != ""){
             assigment = assigment.substring(0, assigment.length - 2);
-            Alert.render(assigment)
+            
+            alert("Today's program: " + assigment);
+            //Alert.render(assigment)
         }
     });
 }
 
 function create_finished_ToDo(){
     finished_ToDo_container = document.getElementsByClassName("container")[1];
+    expired_ToDo_container = document.getElementsByClassName("container")[2];
     finished_ToDo_container.innerHTML = "";
+    expired_ToDo_container.innerHTML = "";
 
     todo_array = [];
     firebase.database().ref("finished_ToDo").once('value', function(snapshot){
@@ -250,6 +264,7 @@ function create_finished_ToDo(){
             fa_delete = document.createElement('i');
             fa_delete.setAttribute('class', 'fa fa-trash');
 
+            // show
             finished_ToDo_container.append(todo_container);
             todo_container.append(todo_data);
             todo_data.append(title);
@@ -285,6 +300,7 @@ function todo_done(todo, todo_tool){
     // delete our ToDo from unfinished
     todo_delete(todo, 0);
     create_finished_ToDo();
+    create_unfinished_ToDo();
 }
 
 function todo_minus(todo, todo_tool){
@@ -306,7 +322,7 @@ function todo_minus(todo, todo_tool){
     firebase.database().ref().update(updates); 
 
     // delete our ToDo from unfinished
-    todo_delete(todo);
+    todo_delete(todo, 1);
     create_unfinished_ToDo();
 }
 
@@ -358,8 +374,44 @@ function todo_delete(todo, where){
     else{
         todo_to_remove = firebase.database().ref("finished_ToDo/" + key);
     }
+    console.log(where);
     todo_to_remove.remove();
 
     // remove from html view or whatever
     todo.remove();
+}
+
+// Current time
+function updateClock(){
+    var now = new Date();
+    var dname = now.getDay(), mo = now.getMonth(), dnum = now.getDate(), yr = now.getFullYear(),
+        hou = now.getHours(), min = now.getMinutes(), sec = now.getSeconds(), pe = "AM";
+        
+    if (hou >= 12){
+        pe = "PM";
+    }
+    if (hou == 0){
+        hou = 12;
+    }
+    if (hou > 12){
+        hou = hou - 12;
+    }
+
+    Number.prototype.pad = function(digits){
+        for (var i = this.toString(); i.length < digits; i = 0 + i);
+            return i;
+    }
+
+    var months = ["January", "February", "March", "April", "May", "June", "July", "Augest", "September", "October", "November", "December"];
+    var week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var ids = ["dayname", "month", "daynum", "year", "hour", "minutes", "seconds", "period"];
+    var values = [week[dname], months[mo], dnum.pad(2), yr, hou.pad(2), min.pad(2), sec.pad(2), pe];
+    for(var i = 0; i < ids.length; i++){
+        document.getElementById(ids[i]).firstChild.nodeValue = values[i];
+    }
+  }
+
+function initClock(){
+    updateClock();
+    window.setInterval("updateClock()", 1);
 }
