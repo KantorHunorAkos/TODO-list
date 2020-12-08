@@ -3,10 +3,27 @@ Software rendszerek tervezése projekt leírás
 
 1.	Bevezetés a projektbe, leírás
 
- 	Projektünk célja egy feladatlista létrehozása, mely segítségével egy XXI. századi ember könnyedén eligazodik a feladatai közt. A feladatokat amint megkapja, bevezeti felületre, akár az applikáció, akár a weboldal segítségével. Amikor az adott feladatot el kell végeznie, a program figyelmeztet és értesítést küld. 
-	A felületen több felhasználó is regisztrálhat, de nem látják egymás feladatait és nem is szerkeszthetik azokat, tehát csak saját profiljukat kezelhetik. 
-	Elsősorban egy Firebase adatbázist hoztunk létre, ahol tárolódik minden felhasználó adata és feladata. Ez az adatbázis elérhető Android applikációról, valamint weboldalról is egyaránt. 
+ 	Projektünk célja egy feladatlista létrehozása, mely segítségével egy XXI. századi ember könnyedén eligazodik a feladatai közt. 
+	A feladatokat amint megkapja, bevezeti felületre, akár az applikáció, akár a weboldal segítségével. 
+	Amikor az adott feladatot el kell végeznie, a program figyelmeztet és értesítést küld. 
+	A felület egy demo, egy felhasználóra van elkészítve, de ezt tovább lehet vinni több felhasználóra, 
+	akik regisztrálhatnak és nem látják egymás feladatait, nem is szerkeszthetik azokat, tehát csak saját profiljukat kezelhetik. 
+	Elsősorban egy Firebase adatbázist hoztunk létre, ahol tárolódik minden elvégzett és nem elvégzett feladat. 
+	Ezt ha tovább folytatnánk, akkor itt tárolódna a felhasználók neve és jelszava, ezen belül pedig a feladatkör. 
+	Ez az adatbázis elérhető Android applikációról, valamint weboldalról is egyaránt. 
 	Ezután neki fogunk mint az Android, mint pedig a weboldal elkészítéséhez.
+	
+	Használata a következőképpen történik: 
+	Ha az app/weboldal ha meg van nyitva értesítést küld az aznapi tevékenységekről.
+	Felsorolja azokat, vesszővel elválasztva. 
+	A felhaasználó hozzáadhat egy eseményt, dátummal párosítva. 
+	Ha valamelyik részt nem tölti ki egy ablak jön elő, ami jelzi a helyztelen adatbevitelt és így nem adhat hozzá feladatot. 
+	Ha hozzáadtunk egy eseményt az megjelenik a folyamatban lévő tevékenységek részben.
+	Itt az eseményt lehet szerkeszteni, mint név és mint idő szempontjából is.
+	Az eseményt lehet törölni. Valamint hozzá lehe tadni a befejezett események listájához. 
+	A befejezett eseményeket lehet törölni vagy visszavonni a nem elvégzettek közé.
+	Ha a hozzáadott tevékenység régebbi, mint az aznapi időpont, akkor a léjárt események listájába kerül.
+	Itt szintén lehet törölni vagy hozzáadni az elvégzett eseményekhez. 
 	
 2.	Feladatok kiosztása
 
@@ -32,8 +49,10 @@ Software rendszerek tervezése projekt leírás
 
     ♦ Webpage:
     
-	A weboldal elkészítéséhez nincs szükségünk semmi féle nagy méretű applikációhoz, akár egy sima Notepad-ban is elkészíthető, és bármilyen browser segítségével futtatható az. 
-	Jómagam, Visual Studio Code-ot használtam, amihez telepítettem néhany extension-t, amik segítik/segítették munkám. Három, illetve három féle file típust használtam a weboldal megvalósításához (html, csss, js). 
+	A weboldal elkészítéséhez nincs szükségünk semmi féle nagy méretű applikációhoz, akár egy sima Notepad-ban is elkészíthető, 
+	és bármilyen browser segítségével futtatható az. 
+	Jómagam, Visual Studio Code-ot használtam, amihez telepítettem néhany extension-t, amik segítik/segítették munkám. 
+	Három, illetve három féle file típust használtam a weboldal megvalósításához (html, csss, js). 
 	A weboldal értsítést küld, ha van aktuális napi tevékenység. 
 	Az oldal újra tölti magát 5 percenként, így ha még mindig van aktuális tevékenység újra értesít. 
    
@@ -75,7 +94,8 @@ firebase.initializeApp(firebaseConfig);
     
     •	CustomAlert: Saját alert létrehozására szolgál, ezt html tag-ekkel oldja meg.
     
-    •	add_todo: Ellenőrzi a beírt, megadott adat helyességét, majd ha mgefelel, hozzáaddja az adatbázishoz és kiirja a képernyőre.
+    •	add_todo: Ellenőrzi a beírt, megadott adat helyességét, majd ha mgefelel, 
+    hozzáaddja az adatbázishoz és kiirja a képernyőre.
     
     •	create_unfinished_ToDo:
     
@@ -116,7 +136,7 @@ firebase.initializeApp(firebaseConfig);
      
      ♥ Negyedik rész: A Finished.
      
-     ♥ Ötödik rész: Az Experied Lisz.
+     ♥ Ötödik rész: Az Experied List.
      
     •	footer: Évszám mutatása JavaScript kódot használva.
     
@@ -135,6 +155,16 @@ firebase.initializeApp(firebaseConfig);
     Hátulütője annyi, hogy az url címet nem teljesen szekeszthetem, hozzá teszi a maga "reklámját". 
     Használt platform: https://www.netlify.com/
     
+    - használt ikonok: 
+      •	   to-do-list.png;
+      •    valamint egy nyilt forrású kódból (https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css):
+      	♥ fa fa-arrow-circle-right
+	♥ fa fa-plus
+	♥ fa fa-pencil
+	♥ fa fa-trash
+	♥ fa fa-minus
+	♥ fa fa-check
+    
   4.	Design
   
   A design rész css(web), illetve xml(Android) fileokban történt.
@@ -151,16 +181,16 @@ firebase.initializeApp(firebaseConfig);
   
   •	gombok: 4 különböző: 
   
-  - add: A To Do List-hez elemet ad hozzá. Dátum és név formájában.
+  - add: A To Do List-hez elemet ad hozzá. Dátum és név formájában. (Enter)
   
-  - done: A To Do List-ből elemet helyez át a Finished List-be
+  - done: A To Do List-ből elemet helyez át a Finished List-be (Plusz)
   
-  - delete: Töröl a teljes adatbázisból.
+  - delete: Töröl a teljes adatbázisból. (Kuka)
   
-  - edit: Szerkesztés lehetőségét adja meg. Dátum, illetve név.
+  - edit: Szerkesztés lehetőségét adja meg. Dátum, illetve név. (Ceruza)
   
   - minus: Elemet helyez át az Expired List-ből a Finished List-be. 
-  Ide akkor kerül elem a To Do List-ből, ha az aktuális dátumhoz képest az kurrens elem dátuma már a múltnak tekinthető. 
+  Ide akkor kerül elem a To Do List-ből, ha az aktuális dátumhoz képest az kurrens elem dátuma már a múltnak tekinthető.  (Minus)
   
   •	képek: to-do-list.png  --> A kép az applikáció, illetve a weboldal icon-ja.
   
