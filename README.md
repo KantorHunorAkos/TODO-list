@@ -90,16 +90,20 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-    - Js függvények: 
+    - JavaScript függvények: 
     
     •	CustomAlert: Saját alert létrehozására szolgál, ezt html tag-ekkel oldja meg.
     
     •	add_todo: Ellenőrzi a beírt, megadott adat helyességét, majd ha mgefelel, 
     hozzáaddja az adatbázishoz és kiirja a képernyőre.
     
-    •	create_unfinished_ToDo:
+    •	create_unfinished_ToDo: Betöltődik, amint elindul a weboldal. 
+    Előszőr kitőrli a To Do List és az Expired List tartalmát, majd lekéri az unfinished_ToDo adatait az adatbázisből, azt berakja egy tömbe és
+    kiírja a képernyőre. Ha az adat régebbi az aktuális időnél, akkor az Expired Listbe rakja, ellenben pedig a To Do Listbe.
     
-    •	create_finished_ToDo:
+    •	create_finished_ToDo: Betöltődik, amint elindul a weboldal. 
+    Előszőr kitőrli a Finished List tartalmát, majd lekéri a finished_ToDo adatait az adatbázisből, azt berakja egy tömbe és minden adatot
+    kiír a képernyőre. 
     
     •	todo_done: Valamelyik eseménynél a plusszra kattintva hívodik meg. 
     Az adott eseményt kitőrli a To Do List-ről és áthelyezi a Finished listába. 
@@ -120,7 +124,8 @@ firebase.initializeApp(firebaseConfig);
     
     •	updateClock: Frissíti az aktuális órát folyamatosan. 
     
-    •	initClock: Elindítja az aktuális órát és kiírja azt a képernyore. 
+    •	initClock: Betöltődik, amint elindul a weboldal. 
+    Elindítja az aktuális órát és kiírja azt a képernyore. 
     
     - html rész felépítése:
     
