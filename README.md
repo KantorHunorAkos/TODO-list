@@ -156,13 +156,21 @@ firebase.initializeApp(firebaseConfig);
     Használt platform: https://www.netlify.com/
     
     - használt ikonok: 
+   
       •	   to-do-list.png;
+      
       •    valamint egy nyilt forrású kódból (https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css):
+      
       	♥ fa fa-arrow-circle-right
+	
 	♥ fa fa-plus
+	
 	♥ fa fa-pencil
+	
 	♥ fa fa-trash
+	
 	♥ fa fa-minus
+	
 	♥ fa fa-check
     
   4.	Design
@@ -190,7 +198,7 @@ firebase.initializeApp(firebaseConfig);
   - edit: Szerkesztés lehetőségét adja meg. Dátum, illetve név. (Ceruza)
   
   - minus: Elemet helyez át az Expired List-ből a Finished List-be. 
-  Ide akkor kerül elem a To Do List-ből, ha az aktuális dátumhoz képest az kurrens elem dátuma már a múltnak tekinthető.  (Minus)
+  Ide akkor kerül elem a To Do List-ből, ha az aktuális dátumhoz képest a kurrens elem dátuma már a múltnak tekinthető.  (Minus)
   
   •	képek: to-do-list.png  --> A kép az applikáció, illetve a weboldal icon-ja.
   
