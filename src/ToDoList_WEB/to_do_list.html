@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <title> To Do </title>
+        <link rel="icon" href="to-do-list.png" type="image/png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="to_do_list.css" type="text/css">
+
+        <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-database.js"></script>
+        <script src="to_do_list.js"> </script>
+    </head>
+    <body onload="create_unfinished_ToDo(), create_finished_ToDo()">
+        <div id="content_container">
+
+            <!--Title-->
+            <div id="to_do_list_header"> <p> To Do List </p> </div>
+            
+            <!--Add To Do-->
+            <div id="input_container">
+                <input id="input_box" type="text" placeholder="Add A Goal">
+                <input id="input_date" type="date">
+                <button id="input_button" onclick="add_todo();"> Enter <i class="fa fa-arrow-circle-right"> </i> </button>
+            </div>
+
+            <!--To Do List-->
+            <p class="header">To Do</p>
+            <div class="container">
+                <div class=data_container>
+                    <div id="data">
+                        <p id="title" contenteditable="false">To Do 1</p>
+                        <p id="date" contenteditable="false">To Do 1</p>
+                    </div>
+                    <div id="tool">
+                        <button id="done_button" onclick="todo_done();">
+                            <i class="fa fa-check"></i>
+                        </button>
+                        <button id="edit_button" onclick="todo_edit();">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <button id="delete_button" onclick="todo_delete();">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class=data_container>
+                    <div id="data">
+                        <p id="title" contenteditable="false">Title 1</p>
+                        <p id="date" contenteditable="false">Date 1</p>
+                    </div>
+                    <div id="tool">
+                        <button id="done_button" onclick="todo_done();">
+                            <i class="fa fa-check"></i>
+                        </button>
+                        <button id="edit_button" onclick="todo_edit();">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <button id="delete_button" onclick="todo_delete();">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class=data_container>
+                    <div id="data">
+                        <p id="title" contenteditable="false">Title 1</p>
+                        <p id="date" contenteditable="false">Date 1</p>
+                    </div>
+                    <div id="tool">
+                        <button id="done_button" onclick="todo_done();">
+                            <i class="fa fa-check"></i>
+                        </button>
+                        <button id="edit_button" onclick="todo_edit();">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <button id="delete_button" onclick="todo_delete();">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!--Finished To Do-->
+            <p class="header">Finished</p>
+            <div class="container">
+                <div class=data_container>
+                    <div id="data">
+                        <p id="title" contenteditable="false">Title 1</p>
+                        <p id="date" contenteditable="false">Date 1</p>
+                    </div>
+                </div>
+                <div class=data_container>
+                    <div id="data">
+                        <p id="title" contenteditable="false">Title 1</p>
+                        <p id="date" contenteditable="false">Date 1</p>
+                    </div>
+                </div>
+                <div class=data_container>
+                    <div id="data">
+                        <p id="title" contenteditable="false">Title 1</p>
+                        <p id="date" contenteditable="false">Date 1</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
