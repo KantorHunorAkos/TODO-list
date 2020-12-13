@@ -2,6 +2,67 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation_graph">
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/todoListFragment">
 
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.example.fragment.AddFragment"
+        android:label="fragment_add"
+        tools:layout="@layout/fragment_add" >
+        <action
+            android:id="@+id/action_addFragment_to_expiredListFragment"
+            app:destination="@id/expiredListFragment" />
+        <action
+            android:id="@+id/action_addFragment_to_finishedListFragment"
+            app:destination="@id/finishedListFragment" />
+        <action
+            android:id="@+id/action_addFragment_to_todoListFragment"
+            app:destination="@id/todoListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/todoListFragment"
+        android:name="com.example.fragment.TodoListFragment"
+        android:label="fragment_todo_list"
+        tools:layout="@layout/fragment_todo_list" >
+        <action
+            android:id="@+id/action_todoListFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_todoListFragment_to_finishedListFragment"
+            app:destination="@id/finishedListFragment" />
+        <action
+            android:id="@+id/action_todoListFragment_to_expiredListFragment"
+            app:destination="@id/expiredListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/expiredListFragment"
+        android:name="com.example.fragment.ExpiredListFragment"
+        android:label="fragment_expired_list"
+        tools:layout="@layout/fragment_expired_list" >
+        <action
+            android:id="@+id/action_expiredListFragment_to_todoListFragment"
+            app:destination="@id/todoListFragment" />
+        <action
+            android:id="@+id/action_expiredListFragment_to_finishedListFragment"
+            app:destination="@id/finishedListFragment" />
+        <action
+            android:id="@+id/action_expiredListFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishedListFragment"
+        android:name="com.example.fragment.FinishedListFragment"
+        android:label="fragment_finished_list"
+        tools:layout="@layout/fragment_finished_list" >
+        <action
+            android:id="@+id/action_finishedListFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_finishedListFragment_to_todoListFragment"
+            app:destination="@id/todoListFragment" />
+        <action
+            android:id="@+id/action_finishedListFragment_to_expiredListFragment"
+            app:destination="@id/expiredListFragment" />
+    </fragment>
 </navigation>
