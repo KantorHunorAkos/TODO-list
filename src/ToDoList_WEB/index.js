@@ -1,4 +1,4 @@
-// Connect to firebase
+// My web app`s Firebase configuration
 var firebaseConfig = {
     apiKey: "AIzaSyAsn_dWrZNB1bRVul_XkgRWFgjEIusPKl8",
     authDomain: "form-8954e.firebaseapp.com",
@@ -9,6 +9,7 @@ var firebaseConfig = {
     appId: "1:347245119398:web:21766531a808a3d8ad7167",
     measurementId: "G-C2LWPVJQFG"
 };
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 // My alert
@@ -28,18 +29,6 @@ function CustomAlert(){
 	}
 }
 var Alert = new CustomAlert();
-
-// Date
-var today = new Date();
-//console.log(today);
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0');
-var yyyy = today.getFullYear();
-var today0 = yyyy + '-' + mm + '-' + dd;
-var hour = today.getHours()
-var minute = today.getMinutes()
-today = yyyy + '-' + mm + '-' + dd + ' ' + hour + ':' + minute;
-//console.log(today);
 
 function add_todo(){
     //console.log("add_todo");
@@ -69,6 +58,17 @@ function add_todo(){
     }
 }
 
+// Date
+var today = new Date();
+//console.log(today);
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0');
+var yyyy = today.getFullYear();
+var today0 = yyyy + '-' + mm + '-' + dd;
+var hour = today.getHours()
+var minute = today.getMinutes()
+today = yyyy + '-' + mm + '-' + dd + ' ' + hour + ':' + minute;
+//console.log(today);
 function create_unfinished_ToDo(){
     unfinished_ToDo_container = document.getElementsByClassName("container")[0];
     expired_ToDo_container = document.getElementsByClassName("container")[2];
@@ -382,11 +382,12 @@ function todo_delete(todo, where){
 }
 
 // Current time
+var months = ["January", "February", "March", "April", "May", "June", "July", "Augest", "September", "October", "November", "December"];
+var week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+var ids = ["dayname", "month", "daynum", "year", "hour", "minutes", "seconds", "period"];
 function updateClock(){
     var now = new Date();
-    var dname = now.getDay(), mo = now.getMonth(), dnum = now.getDate(), yr = now.getFullYear(),
-        hou = now.getHours(), min = now.getMinutes(), sec = now.getSeconds(), pe = "AM";
-        
+    var dname = now.getDay(), mo = now.getMonth(), dnum = now.getDate(), yr = now.getFullYear(), hou = now.getHours(), min = now.getMinutes(), sec = now.getSeconds(), pe = "AM";
     if (hou >= 12){
         pe = "PM";
     }
@@ -396,20 +397,15 @@ function updateClock(){
     if (hou > 12){
         hou = hou - 12;
     }
-
     Number.prototype.pad = function(digits){
         for (var i = this.toString(); i.length < digits; i = 0 + i);
-            return i;
+        return i;
     }
-
-    var months = ["January", "February", "March", "April", "May", "June", "July", "Augest", "September", "October", "November", "December"];
-    var week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    var ids = ["dayname", "month", "daynum", "year", "hour", "minutes", "seconds", "period"];
     var values = [week[dname], months[mo], dnum.pad(2), yr, hou.pad(2), min.pad(2), sec.pad(2), pe];
     for(var i = 0; i < ids.length; i++){
         document.getElementById(ids[i]).firstChild.nodeValue = values[i];
     }
-  }
+}
 
 function initClock(){
     updateClock();
